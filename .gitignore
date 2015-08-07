@@ -1,0 +1,9 @@
+/build/coverage
+/build/logs
+/vendor
+/docs
+/stubs
+.idea
+.DS_Store
+composer.phar
+composer.lock
