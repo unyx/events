@@ -81,21 +81,22 @@ interface Emitter
     public function off(string $name = null, callable $listener = null) : self;
 
     /**
-     * Adds an Event Subscriber. The Subscriber is queried for a list of events he is interested in and afterwards
-     * registered as a listener for them.
+     * Registers an Event Subscriber with this Emitter. The Subscriber is queried for a list of events
+     * he is interested in and afterwards registered as a listener for them.
      *
      * @param   Subscriber  $subscriber
      * @return  $this
      */
-    public function subscribe(Subscriber $subscriber) : self;
+    public function register(Subscriber $subscriber) : self;
 
     /**
-     * Removes an Event Subscriber.
+     * Deregisters an Event Subscriber from this Emitter, removing all listeners it has registered
+     * with.
      *
      * @param   Subscriber  $subscriber
      * @return  $this
      */
-    public function unsubscribe(Subscriber $subscriber) : self;
+    public function deregister(Subscriber $subscriber) : self;
 
     /**
      * Returns an array containing the priority-sorted listeners for the given event or for all events if no trigger
