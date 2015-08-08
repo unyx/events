@@ -1,8 +1,5 @@
 <?php namespace nyx\events\interfaces;
 
-// Internal dependencies
-use nyx\events;
-
 /**
  * Event Emitter Interface
  *
@@ -31,19 +28,19 @@ interface Emitter
      * if you wish to modify the data within listeners and have it available with those changes within further
      * listeners.
      *
-     * @param   string|events\Event $name       The name of the event to emit. You may also pass an Event object that
-     *                                          has its trigger name set {@see Event::setName()}.
-     * @param   events\Event|mixed  $event      The event to pass to the event handlers/listeners. If not supplied or
-     *                                          not an instance of events\Event an empty Event instance will be
-     *                                          created and all arguments after $name will be passed to the
-     *                                          listeners. If left as the CREATE_EMPTY_EVENT magic constant, this
-     *                                          argument will be completely ignored (ie. not passed to the listeners)
-     *                                          but will still trigger the creation of a base Event.
-     * @return  events\Event                    The Event after it has run through all registered listeners.
-     * @throws  \LogicException                 When only an Event object is passed but it does not have a valid
-     *                                          trigger name.
+     * @param   string|Event    $name   The name of the event to emit. You may also pass an Event object that
+     *                                  has its trigger name set {@see Event::setName()}.
+     * @param   Event|mixed     $event  The event to pass to the event handlers/listeners. If not supplied or
+     *                                  not an instance of events\Event an empty Event instance will be
+     *                                  created and all arguments after $name will be passed to the
+     *                                  listeners. If left as the CREATE_EMPTY_EVENT magic constant, this
+     *                                  argument will be completely ignored (ie. not passed to the listeners)
+     *                                  but will still trigger the creation of a base Event.
+     * @return  Event                   The Event after it has run through all registered listeners.
+     * @throws  \LogicException         When only an Event object is passed but it does not have a valid
+     *                                  trigger name.
      */
-    public function emit($name, $event = self::CREATE_EMPTY_EVENT, ...$arguments) : events\Event;
+    public function emit($name, $event = self::CREATE_EMPTY_EVENT, ...$arguments) : Event;
 
     /**
      * Adds an event listener that listens to the specified event.
