@@ -19,7 +19,7 @@ interface EmitterAware
      *
      * @return  Emitter
      */
-    public function getEmitter();
+    public function getEmitter() : Emitter;
 
     /**
      * Sets an Event Emitter instance inside the implementer.
@@ -27,12 +27,12 @@ interface EmitterAware
      * @param   Emitter  $emitter   The Emitter to set.
      * @return  $this
      */
-    public function setEmitter(Emitter $emitter);
+    public function setEmitter(Emitter $emitter) : self;
 
     /**
      * Checks whether the implementer has a set Event Emitter instance.
      *
      * @return  bool    True when an Event Emitter is set, false otherwise.
      */
-    public function hasEmitter();
+    public function hasEmitter() : bool;
 }
