@@ -13,11 +13,11 @@ use nyx\events;
  * Important note: When using this trait, make sure the class you are using it in also implements the Emitter
  * interface to allow for proper compatibility with Subscribers etc.
  *
- * @package     Nyx\Events\Emission
+ * @package     Nyx\Events
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
  * @copyright   2012-2016 Nyx Dev Team
- * @link        http://docs.muyo.io/nyx/events/emission.html
+ * @link        http://docs.muyo.io/nyx/events/index.html
  */
 trait Emitter
 {

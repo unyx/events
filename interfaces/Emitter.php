@@ -6,11 +6,11 @@
  * Event synchronization point. Registers/removes listeners for events and triggers events. Supports registering
  * listeners by priority.
  *
- * @package     Nyx\Events\Emission
+ * @package     Nyx\Events
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
  * @copyright   2012-2016 Nyx Dev Team
- * @link        http://docs.muyo.io/nyx/events/emission.html
+ * @link        http://docs.muyo.io/nyx/events/index.html
  */
 interface Emitter
 {

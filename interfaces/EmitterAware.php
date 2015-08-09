@@ -6,11 +6,11 @@
  * An Event Emitter Aware object is one that may contain an Emitter which can be injected and retrieved using the
  * respective getters/setters.
  *
- * @package     Nyx\Events\Emission
+ * @package     Nyx\Events
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
  * @copyright   2012-2016 Nyx Dev Team
- * @link        http://docs.muyo.io/nyx/events/emission.html
+ * @link        http://docs.muyo.io/nyx/events/index.html
  */
 interface EmitterAware
 {
