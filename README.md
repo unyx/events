@@ -6,9 +6,7 @@
 
 -----
 
-<p align="center">
-  <img src="http://s7.postimg.org/6cruwesi3/Nyx.png" />
-</p>
+![Dev warning](http://s7.postimg.org/6cruwesi3/Nyx.png)
 
 Yet another PHP events library as all the others were **not invented here**.
 
