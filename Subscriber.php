@@ -34,7 +34,7 @@ abstract class Subscriber implements interfaces\Subscriber, interfaces\EmitterAw
         $this->emitter = $emitter;
 
         // Should we automatically subscribe?
-        if ($subscribe and $emitter) {
+        if ($subscribe && $emitter) {
             $this->subscribe();
         }
     }
@@ -50,7 +50,7 @@ abstract class Subscriber implements interfaces\Subscriber, interfaces\EmitterAw
     {
         // Make sure we have a Emitter to use. Attempt to use the default one if none is given to
         // to method. Throw an exception if neither is present.
-        if (null === $emitter and null === $emitter = $this->emitter) {
+        if (null === $emitter && null === $emitter = $this->emitter) {
             throw new \InvalidArgumentException('No Emitter given and the Subscriber has no default Emitter either.');
         }
 
@@ -70,7 +70,7 @@ abstract class Subscriber implements interfaces\Subscriber, interfaces\EmitterAw
     {
         // Make sure we have a Emitter to use. Attempt to use the default one if none is given to the method.
         // Throw an exception if neither is present.
-        if (null === $emitter and null === $emitter = $this->emitter) {
+        if (null === $emitter && null === $emitter = $this->emitter) {
             throw new \InvalidArgumentException('No Emitter given and the Subscriber has no default Emitter either.');
         }
 

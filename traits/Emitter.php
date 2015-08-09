@@ -52,7 +52,7 @@ trait Emitter
 
             // Make sure we've got a triggerName.
             if (!$name = $name->getName()) {
-                throw new \LogicException("The given Event does not have a valid name.");
+                throw new \LogicException('The given Event does not have a valid name.');
             }
         }
         // Make sure we've got an Event instance, so create one if necessary.
@@ -197,7 +197,7 @@ trait Emitter
                 $this->on($name, [$subscriber, $params]);
             }
             // A callable and a priority.
-            elseif (isset($params[0]) and is_string($params[0])) {
+            elseif (isset($params[0]) && is_string($params[0])) {
                 $this->on($name, [$subscriber, $params[0]], isset($params[1]) ? $params[1] : 0);
             }
             // An array of callables (and their optional priorities)
@@ -217,7 +217,7 @@ trait Emitter
     public function deregister(interfaces\Subscriber $subscriber) : self
     {
         foreach ($subscriber->getSubscribedEvents() as $name => $params) {
-            if (is_array($params) and is_array($params[0])) {
+            if (is_array($params) && is_array($params[0])) {
                 foreach ($params as $listener) {
                     $this->off($name, [$subscriber, $listener[0]]);
                 }

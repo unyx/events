@@ -124,8 +124,8 @@ class Event implements interfaces\Event
             throw new \InvalidArgumentException('Cannot emit an Event which has no name.');
         }
 
-        if (null === $emitter and null === $emitter = $this->emitter) {
-            throw new \LogicException("No Emitter given and the Event has no Emitter set.");
+        if (null === $emitter && null === $emitter = $this->emitter) {
+            throw new \LogicException('No Emitter given and the Event has no Emitter set.');
         }
 
         // No need to set the Emitter in this Event within this method as the call below will do that for us.
