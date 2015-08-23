@@ -79,13 +79,9 @@ trait Emitter
             return $event;
         }
 
-        // Time to prepare the arguments which are going to be passed to the listeners. We need the Event instance
-        // to be first in all cases, so let's start with that.
-        array_unshift($arguments, $event);
-
         // Now perform the actual emitting. Loop through the listeners and invoke the respective callables.
         foreach ($this->getListeners($name) as $listener) {
-            call_user_func_array($listener, $arguments);
+            call_user_func($listener, $event, ...$arguments);
 
             // Break further propagation if the event has been put to a halt.
             if ($event->stopped()) {
@@ -117,10 +113,10 @@ trait Emitter
     {
         // We'll create a wrapper closure which will remove the listener once it receives the first event
         // and pass the arguments to the listener manually.
-        $wrapper = function () use (&$wrapper, $name, $listener) {
+        $wrapper = function (interfaces\Event $event, ...$params) use (&$wrapper, $name, $listener) {
             $this->off($name, $wrapper);
 
-            call_user_func_array($listener, func_get_args());
+            call_user_func($listener, $event, ...$params);
         };
 
         // Register the wrapper.
@@ -278,13 +274,15 @@ trait Emitter
     protected function sortListeners($name)
     {
         // Only prepare the chain when the actual event has any listeners attached.
-        if (isset($this->listeners[$name])) {
-            $this->chain[$name] = [];
-
-            // Sort the listeners by priority in a descending order.
-            krsort($this->listeners[$name]);
-
-            $this->chain[$name] = call_user_func_array('array_merge', $this->listeners[$name]);
+        if (!isset($this->listeners[$name])) {
+            return;
         }
+
+        $this->chain[$name] = [];
+
+        // Sort the listeners by priority in a descending order.
+        krsort($this->listeners[$name]);
+
+        $this->chain[$name] = array_merge(...$this->listeners[$name]);
     }
 }
