@@ -16,7 +16,7 @@ Yet another PHP events library as all the others were **not invented here**.
 
 ### Requirements
 
-- PHP 7.0+
+- PHP 7.0.5+
 
 ### Installation
 
