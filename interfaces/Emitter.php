@@ -120,5 +120,5 @@ interface Emitter
      * @param   string  $name   The trigger name of the event.
      * @return  int
      */
-    public function countListeners(string $name = null) : self;
+    public function countListeners(string $name = null) : int;
 }
