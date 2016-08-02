@@ -32,7 +32,7 @@ trait Emitter
     private $chain = [];
 
     /**
-     * @see events\interfaces\Emitter::emit()
+     * @see \nyx\events\interfaces\Emitter::emit()
      */
     public function emit($name, $event = interfaces\Emitter::CREATE_EMPTY_EVENT, ...$arguments) : interfaces\Event
     {
@@ -79,7 +79,7 @@ trait Emitter
             return $event;
         }
 
-        // Now perform the actual emitting. Loop through the listeners and invoke the respective callables.
+        // Now perform the actual emitting. Loop through the listeners and invoke the respective callbacks.
         foreach ($this->getListeners($name) as $listener) {
             call_user_func($listener, $event, ...$arguments);
 
@@ -93,7 +93,7 @@ trait Emitter
     }
 
     /**
-     * @see events\interfaces\Emitter::on()
+     * @see \nyx\events\interfaces\Emitter::on()
      */
     public function on(string $name, callable $listener, int $priority = 0) : self
     {
@@ -107,7 +107,7 @@ trait Emitter
     }
 
     /**
-     * @see events\interfaces\Emitter::once()
+     * @see \nyx\events\interfaces\Emitter::once()
      */
     public function once(string $name, callable $listener, int $priority = 0) : self
     {
@@ -124,7 +124,7 @@ trait Emitter
     }
 
     /**
-     * @see events\interfaces\Emitter::off()
+     * @see \nyx\events\interfaces\Emitter::off()
      */
     public function off(string $name = null, callable $listener = null) : self
     {
@@ -183,7 +183,7 @@ trait Emitter
     }
 
     /**
-     * @see events\interfaces\Emitter::subscribe()
+     * @see \nyx\events\interfaces\Emitter::subscribe()
      */
     public function register(interfaces\Subscriber $subscriber) : self
     {
@@ -226,7 +226,7 @@ trait Emitter
     }
 
     /**
-     * @see events\interfaces\Emitter::getListeners()
+     * @see \nyx\events\interfaces\Emitter::getListeners()
      */
     public function getListeners(string $name = null) : array
     {
@@ -250,7 +250,7 @@ trait Emitter
     }
 
     /**
-     * @see events\interfaces\Emitter::hasListeners()
+     * @see \nyx\events\interfaces\Emitter::hasListeners()
      */
     public function hasListeners(string $name = null) : bool
     {
@@ -258,7 +258,7 @@ trait Emitter
     }
 
     /**
-     * @see events\interfaces\Emitter::countListeners()
+     * @see \nyx\events\interfaces\Emitter::countListeners()
      */
     public function countListeners(string $name = null) : int
     {
@@ -271,7 +271,7 @@ trait Emitter
      *
      * @param   string  $name The name of the event.
      */
-    protected function sortListeners($name)
+    protected function sortListeners(string $name)
     {
         // Only prepare the chain when the actual event has any listeners attached.
         if (!isset($this->listeners[$name])) {

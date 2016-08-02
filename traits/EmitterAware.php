@@ -32,7 +32,7 @@ trait EmitterAware
     /**
      * @see interfaces\EmitterAware::setEmitter()
      */
-    public function setEmitter(interfaces\Emitter $emitter) : self
+    public function setEmitter(interfaces\Emitter $emitter) : interfaces\EmitterAware
     {
         $this->emitter = $emitter;
 

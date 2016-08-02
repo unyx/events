@@ -24,5 +24,5 @@ interface Subscriber
      *
      * @return  array   The event names to listen for.
      */
-    public function getSubscribedEvents();
+    public function getSubscribedEvents() : array;
 }

@@ -29,7 +29,7 @@ abstract class Subscriber implements interfaces\Subscriber, interfaces\EmitterAw
      * @param   interfaces\Emitter  $emitter    The default Emitter for this Subscriber.
      * @param   bool                $subscribe  Whether to automatically subscribe to the events.
      */
-    public function __construct(interfaces\Emitter $emitter = null, $subscribe = false)
+    public function __construct(interfaces\Emitter $emitter = null, bool $subscribe = false)
     {
         $this->emitter = $emitter;
 

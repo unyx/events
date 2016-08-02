@@ -75,7 +75,7 @@ class Event implements interfaces\Event
     /**
      * {@inheritDoc}
      */
-    public function stop() : self
+    public function stop() : interfaces\Event
     {
         $this->stopped = true;
 
@@ -89,7 +89,7 @@ class Event implements interfaces\Event
      *
      * @throws  \LogicException  When attempting to set an Emitter after it is already set.
      */
-    public function setEmitter(interfaces\Emitter $emitter) : self
+    public function setEmitter(interfaces\Emitter $emitter) : interfaces\EmitterAware
     {
         if (null !== $this->emitter && $this->emitter !== $emitter) {
             throw new \LogicException('The Emitter of an Event can not be changed after emission had started.');
