@@ -95,7 +95,7 @@ trait Emitter
     /**
      * @see \nyx\events\interfaces\Emitter::on()
      */
-    public function on(string $name, callable $listener, int $priority = 0) : self
+    public function on(string $name, callable $listener, int $priority = 0) : interfaces\Emitter
     {
         // Add the listener to the registry.
         $this->listeners[$name][$priority][] = $listener;
@@ -109,7 +109,7 @@ trait Emitter
     /**
      * @see \nyx\events\interfaces\Emitter::once()
      */
-    public function once(string $name, callable $listener, int $priority = 0) : self
+    public function once(string $name, callable $listener, int $priority = 0) : interfaces\Emitter
     {
         // We'll create a wrapper closure which will remove the listener once it receives the first event
         // and pass the arguments to the listener manually.
@@ -126,7 +126,7 @@ trait Emitter
     /**
      * @see \nyx\events\interfaces\Emitter::off()
      */
-    public function off(string $name = null, callable $listener = null) : self
+    public function off(string $name = null, callable $listener = null) : interfaces\Emitter
     {
         // When no listener is specified, we will be removing either all listeners altogether
         // or the listeners for the specified event name.
@@ -183,9 +183,9 @@ trait Emitter
     }
 
     /**
-     * @see \nyx\events\interfaces\Emitter::subscribe()
+     * @see \nyx\events\interfaces\Emitter::register()
      */
-    public function register(interfaces\Subscriber $subscriber) : self
+    public function register(interfaces\Subscriber $subscriber) : interfaces\Emitter
     {
         foreach ($subscriber->getSubscribedEvents() as $name => $params) {
             // If just a callable was given.
@@ -208,9 +208,9 @@ trait Emitter
     }
 
     /**
-     * @see events\interfaces\Emitter::unsubscribe()
+     * @see \nyx\events\interfaces\Emitter::deregister()
      */
-    public function deregister(interfaces\Subscriber $subscriber) : self
+    public function deregister(interfaces\Subscriber $subscriber) : interfaces\Emitter
     {
         foreach ($subscriber->getSubscribedEvents() as $name => $params) {
             if (is_array($params) && is_array($params[0])) {
@@ -231,7 +231,7 @@ trait Emitter
     public function getListeners(string $name = null) : array
     {
         // Sort the listeners for a given trigger name and return that subset.
-        if (null !== $name) {
+        if (isset($name)) {
             if (!isset($this->chain[$name])) {
                 $this->sortListeners($name);
             }
