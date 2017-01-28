@@ -18,7 +18,6 @@ interface Emitter
      *                                          interface, whose name will be used.
      * @param   mixed           ...$payload     The data to pass to listeners, in the order given. If $event is an
      *                                          instance of the Event interface, it will be prepended to the $payload.
-     * @throws  \InvalidArgumentException       When $event is neither a string nor an Event instance.
      */
     public function emit($event, ...$payload);
 
