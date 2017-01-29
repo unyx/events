@@ -9,14 +9,14 @@
  * @package     Nyx\Events
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
- * @copyright   2012-2016 Nyx Dev Team
- * @link        http://docs.muyo.io/nyx/events/index.html
+ * @copyright   2012-2017 Nyx Dev Team
+ * @link        https://github.com/unyx/nyx
  */
 interface Subscriber
 {
     /**
-     * Returns an array of event names this subscriber wants to listen to. The returned array can have either of the
-     * following structures:
+     * Returns an array of event names this subscriber wants to listen to. The returned array can
+     * have either of the following structures:
      *
      *   ['eventName' => 'methodName']
      *   ['eventName' => ['methodName', $priority]]

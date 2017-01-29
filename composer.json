@@ -1,7 +1,7 @@
 {
   "name":        "nyx/events",
-  "description": "Basic event handling. An event Emitter, Event and Subscriber classe.",
-  "keywords":    ["nyx", "events", "event-emitter", "event-dispatcher", "event-subscriber", "async"],
+  "description": "Basic event handling. An event Emitter, Event and Subscriber classes.",
+  "keywords":    ["nyx", "events", "event-emitter", "event-dispatcher", "event-subscriber"],
   "license":     "MIT",
   "homepage":    "https://github.com/unyx/nyx",
   "authors": [
@@ -15,7 +15,7 @@
   },
 
   "require": {
-    "php": ">=7.1.0-dev"
+    "php": ">=7.1.0"
   },
 
   "require-dev": {
