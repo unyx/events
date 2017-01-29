@@ -2,7 +2,6 @@
 
 // Internal dependencies
 use nyx\events\interfaces;
-use nyx\events;
 
 /**
  * Event Emitter
@@ -11,7 +10,7 @@ use nyx\events;
  * listeners by priority and subscribers.
  *
  * Important note: When using this trait, make sure the class you are using it in also implements the Emitter
- * interface to allow for proper compatibility with Subscribers etc.
+ * interface.
  *
  * @package     Nyx\Events
  * @version     0.1.0
@@ -34,62 +33,24 @@ trait Emitter
     /**
      * @see \nyx\events\interfaces\Emitter::emit()
      */
-    public function emit($name, $event = interfaces\Emitter::CREATE_EMPTY_EVENT, ...$arguments) : interfaces\Event
+    public function emit($event, ...$data)
     {
-        // If we only get an Event object, let's do some magic.
-        if ($name instanceof interfaces\Event) {
-            if (!$event instanceof interfaces\Event) {
-                // Since $event wasn't actually an Event instance, it means it's data to pass to the listeners...
-                // unless it's our little magic constant.
-                if ($event !== interfaces\Emitter::CREATE_EMPTY_EVENT) {
-                    array_unshift($arguments, $event);
-                }
-
-                // Well, technically someone *could* pass two different Event objects to use the triggerName of the first
-                // one but forward the second one... beats me why one would do that, though.
-                $event = $name;
-            }
-
-            // Make sure we've got a triggerName.
-            if (!$name = $name->getName()) {
-                throw new \LogicException('The given Event does not have a valid name.');
-            }
-        }
-        // Make sure we've got an Event instance, so create one if necessary.
-        elseif (!$event instanceof interfaces\Event) {
-            // Since $event wasn't actually an Event instance, it means it's data to pass to the listeners...
-            // unless it's our little magic constant.
-            if ($event !== interfaces\Emitter::CREATE_EMPTY_EVENT) {
-                array_unshift($arguments, $event);
-            }
-
-            $event = new events\Event($name);
-        } else {
-            // Ensure the Event knows its trigger. This will be a duplicate call for passed Events that had their names
-            // already set but can't really be avoided (the overhead of workarounds is bigger than that of just
-            // calling the method).
-            $event->setName($name);
+        // If an object implementing the Event interface gets passed in as the first argument,
+        // we are going to use its name as the trigger and prepend the object itself to the payload.
+        if ($event instanceof interfaces\Event) {
+            array_unshift($data, $event);
+            $event = $event->getType();
         }
 
-        // Keep track of which Emitter is handling the Event.
-        $event->setEmitter($this);
-
-        // If there are no listeners for this event, just return the Event instance.
-        if (!isset($this->listeners[$name])) {
-            return $event;
+        // If there are no listeners for this event, stop further processing.
+        if (!isset($this->listeners[$event])) {
+            return;
         }
 
-        // Now perform the actual emitting. Loop through the listeners and invoke the respective callbacks.
-        foreach ($this->getListeners($name) as $listener) {
-            call_user_func($listener, $event, ...$arguments);
-
-            // Break further propagation if the event has been put to a halt.
-            if ($event->stopped()) {
-                break;
-            }
+        // Loop through all listeners and invoke the respective callbacks.
+        foreach ($this->getListeners($event) as $listener) {
+            call_user_func($listener, ...$data);
         }
-
-        return $event;
     }
 
     /**
