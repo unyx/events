@@ -8,6 +8,9 @@
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
  * @copyright   2012-2017 Nyx Dev Team
  * @link        https://github.com/unyx/nyx
+ * @todo        Decide: Optionally append the Emitter instance and event type to the payload when emitting?
+ * @todo        Decide: Event propagation stopping?
+ * @todo        Decide: Wildcard events / channel support?
  */
 interface Emitter
 {
