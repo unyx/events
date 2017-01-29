@@ -11,8 +11,8 @@ use nyx\events\interfaces;
  * @package     Nyx\Events\Emission
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
- * @copyright   2012-2016 Nyx Dev Team
- * @link        http://docs.muyo.io/nyx/events/index.html
+ * @copyright   2012-2017 Nyx Dev Team
+ * @link        https://github.com/unyx/nyx
  */
 class Immutable implements interfaces\Emitter
 {
@@ -34,23 +34,15 @@ class Immutable implements interfaces\Emitter
     /**
      * {@inheritDoc}
      */
-    public function emit($name, $event = self::CREATE_EMPTY_EVENT, ...$arguments) : interfaces\Event
+    public function emit($event, ...$payload)
     {
-        return $this->emitter->emit($name, $event);
+        return $this->emitter->emit($event, ...$payload);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function on(string $name, callable $listener, int $priority = 0) : interfaces\Emitter
-    {
-        throw new \BadMethodCallException('Immutable event Emitters can not be modified.');
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function once(string $name, callable $listener, int $priority = 0) : interfaces\Emitter
+    public function on(string $event, callable $listener, int $priority = 0) : interfaces\Emitter
     {
         throw new \BadMethodCallException('Immutable event Emitters can not be modified.');
     }
@@ -58,7 +50,15 @@ class Immutable implements interfaces\Emitter
     /**
      * {@inheritDoc}
      */
-    public function off(string $name = null, callable $listener = null) : interfaces\Emitter
+    public function once(string $event, callable $listener, int $priority = 0) : interfaces\Emitter
+    {
+        throw new \BadMethodCallException('Immutable event Emitters can not be modified.');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function off(string $event = null, callable $listener = null) : interfaces\Emitter
     {
         throw new \BadMethodCallException('Immutable event Emitters can not be modified.');
     }
@@ -82,24 +82,24 @@ class Immutable implements interfaces\Emitter
     /**
      * {@inheritDoc}
      */
-    public function getListeners(string $name = null) : array
+    public function getListeners(string $event = null) : array
     {
-        return $this->emitter->getListeners($name);
+        return $this->emitter->getListeners($event);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function hasListeners(string $name = null) : bool
+    public function hasListeners(string $event = null) : bool
     {
-        return $this->emitter->hasListeners($name);
+        return $this->emitter->hasListeners($event);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function countListeners(string $name = null) : int
+    public function countListeners(string $event = null) : int
     {
-        return $this->emitter->countListeners($name);
+        return $this->emitter->countListeners($event);
     }
 }
