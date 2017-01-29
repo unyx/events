@@ -103,16 +103,12 @@ trait Emitter
             return $this;
         }
 
-        // Without a name but with a listener callable we are going to remove the specified
-        // listener from all events it's listening to. Do note that this is a costly operation
-        // and should be avoided if you can.
-        // First loop through our unsorted event mappings - we don't know the name of the event
-        // we might hit in so we need to loop through all bindings. Then loop through its priority bindings.
-        // Finally compare the registered listeners with our passed in listener using strict equality.
+        // Without a name but with a listener callable we are going to remove the specified listener from
+        // all events it's listening to. Do note that this is a costly operation and should be avoided if you can.
         if (!isset($event)) {
             foreach ($this->listeners as $event => $priorityMap) {
                 foreach ($priorityMap as $priority => $listeners) {
-                    if (false !== ($key = array_search($listener, $listeners, true))) {
+                    if (false !== $key = array_search($listener, $listeners, true)) {
                         unset($this->listeners[$event][$priority][$key], $this->chain[$event]);
                     }
                 }
@@ -120,7 +116,7 @@ trait Emitter
         } else {
             // If we get to this point it means we were given both a name and a listener.
             foreach ($this->listeners[$event] as $priority => $listeners) {
-                if (false !== ($key = array_search($listener, $listeners, true))) {
+                if (false !== $key = array_search($listener, $listeners, true)) {
                     unset($this->listeners[$event][$priority][$key], $this->chain[$event]);
                 }
             }
