@@ -77,29 +77,29 @@ interface Emitter
     public function deregister(Subscriber $subscriber) : Emitter;
 
     /**
-     * Returns an array containing the priority-sorted listeners for the given event or for all events if no trigger
-     * name is given.
+     * Returns an array containing the priority-sorted listeners for the given event or for all events
+     * if no event name is given.
      *
-     * @param   string  $name   The trigger name of the event.
+     * @param   string  $event  The name of the event.
      * @return  array           The event listeners for the specified event.
      */
-    public function getListeners(string $name = null) : array;
+    public function getListeners(string $event = null) : array;
 
     /**
-     * Checks whether the given trigger name has any listeners registered or when no trigger name is given whether
-     * any listeners at all are registered.
+     * Checks whether the given event has any listeners or when no event name is given whether any listeners
+     * at all are registered.
      *
-     * @param   string  $name   The trigger name of the event.
+     * @param   string  $event  The name of the event.
      * @return  bool
      */
-    public function hasListeners(string $name = null) : bool;
+    public function hasListeners(string $event = null) : bool;
 
     /**
-     * Returns the count of the listeners for the given trigger name or the count of all registered listeners if
-     * no trigger name is given.
+     * Returns the count of the listeners for the given event or the count of all registered listeners if
+     * no event name is given.
      *
-     * @param   string  $name   The trigger name of the event.
+     * @param   string  $event  The name of the event.
      * @return  int
      */
-    public function countListeners(string $name = null) : int;
+    public function countListeners(string $event = null) : int;
 }
