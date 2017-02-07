@@ -1,34 +1,36 @@
 # nyx/events
-[![Latest Stable Version](https://poser.pugx.org/nyx/events/v/stable.png)](https://packagist.org/packages/nyx/events)
-[![Total Downloads](https://poser.pugx.org/nyx/events/downloads.png)](https://packagist.org/packages/nyx/events)
-[![Build Status](https://travis-ci.org/unyx/events.png)](https://travis-ci.org/unyx/events)
-[![Dependency Status](https://www.versioneye.com/user/projects/55c5433d653762001a00361a/badge.png)](https://www.versioneye.com/user/projects/55c5433d653762001a00361a)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/unyx/events/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/unyx/events)
+
+> Yet another PHP events library as all the others were **not invented here**.
+
+<img align="right" src="https://s29.postimg.org/wg17yp5lj/rsz_logo_l_300.png" alt="Nyx's logo" />
+
+[![Latest stable version](https://poser.pugx.org/nyx/events/v/stable.png)](https://packagist.org/packages/nyx/events)
+[![Total downloads](https://poser.pugx.org/nyx/events/downloads.png)](https://packagist.org/packages/nyx/events)
+[![Build status](https://travis-ci.org/unyx/events.png)](https://travis-ci.org/unyx/events)
+[![Code quality](https://scrutinizer-ci.com/g/unyx/events/badges/quality-score.png)](https://scrutinizer-ci.com/g/unyx/events)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://alcore.mit-license.org)
 
------
+Currently in its infant **design phase** and therefore considered **unusable**. The API will fluctuate, 
+solar flares will appear, wormholes will consume your data, gremlins will chase your cat. You've been warned.
 
-![Dev warning](http://s7.postimg.org/6cruwesi3/Nyx.png)
+<br />
 
-Yet another PHP events library as all the others were **not invented here**.
+## Requirements
 
------
+- PHP **7.1.0**+
 
-### Requirements
+## Installation
 
-- PHP 7.1.0+
+The only supported way of installing this package is via [Composer](http://getcomposer.org):
 
-### Installation
+```
+composer require nyx/events
+```
 
-The only supported way of installing this package is using [Composer](http://getcomposer.org).
-
-- Add `nyx/events` as a dependency to your project's `composer.json` file.
-- Run `composer update` and you're ready to go.
-
-### Documentation
+## Documentation
 
 The code is fully inline documented for the time being. Online documentation will be made available in due time.
 
-### License
+## License
 
 Nyx is open source software licensed under the [MIT license](http://alcore.mit-license.org).
