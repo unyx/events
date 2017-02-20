@@ -100,25 +100,13 @@ trait Emitter
         }
 
         // Without a name but with a listener callable we are going to remove the specified listener from
-        // all events it's listening to. Do note that this is a costly operation and should be avoided if you can.
+        // all events it's listening to. Note that this is a costly operation and should be avoided if you can.
         if (!isset($event)) {
-            foreach ($this->listeners as $event => $priorityMap) {
-                foreach ($priorityMap as $priority => $listeners) {
-                    if (false !== $key = array_search($listener, $listeners, true)) {
-                        unset($this->listeners[$event][$priority][$key], $this->chain[$event]);
-                    }
-                }
-            }
-        } else {
-            // If we get to this point it means we were given both a name and a listener.
-            foreach ($this->listeners[$event] as $priority => $listeners) {
-                if (false !== $key = array_search($listener, $listeners, true)) {
-                    unset($this->listeners[$event][$priority][$key], $this->chain[$event]);
-                }
-            }
+            return $this->removeListener($listener);
         }
 
-        return $this;
+        // If we get to this point it means we were given both a name and a listener.
+        return $this->removeListenerFromEvent($listener, $event);
     }
 
     /**
@@ -205,21 +193,60 @@ trait Emitter
     }
 
     /**
+     * Removes the given listener from all events it is listening to.
+     *
+     * @param   callable            $listener   The listener to remove.
+     * @return  $this
+     */
+    protected function removeListener(callable $listener) : interfaces\Emitter
+    {
+        foreach ($this->listeners as $event => $priorityMap) {
+            foreach ($priorityMap as $priority => $listeners) {
+                if (false !== $key = array_search($listener, $listeners, true)) {
+                    unset($this->listeners[$event][$priority][$key], $this->chain[$event]);
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Removes the given listener from the given event.
+     *
+     * @param   callable            $listener   The listener to remove.
+     * @param   string              $event      The event to remove the listener from.
+     * @return  $this
+     */
+    protected function removeListenerFromEvent(callable $listener, string $event) : interfaces\Emitter
+    {
+        foreach ($this->listeners[$event] as $priority => $listeners) {
+            if (false !== $key = array_search($listener, $listeners, true)) {
+                unset($this->listeners[$event][$priority][$key], $this->chain[$event]);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * Sorts the listeners for the given event name descending by priority, so the higher priority listeners
      * can get called first in the chain.
      *
      * @param   string  $event  The name of the event.
+     * @return  $this
      */
-    protected function sortListeners(string $event)
+    protected function sortListeners(string $event) : interfaces\Emitter
     {
-        // Only prepare the chain when the actual event has any listeners attached.
         if (!isset($this->listeners[$event])) {
-            return;
+            return $this;
         }
 
         // Sort the listeners by priority in a descending order.
         krsort($this->listeners[$event]);
 
         $this->chain[$event] = array_merge(...$this->listeners[$event]);
+
+        return $this;
     }
 }
