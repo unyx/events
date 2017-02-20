@@ -8,7 +8,6 @@ use nyx\events\interfaces;
  *
  * An event Emitter that acts as a read-only proxy for an actual event Emitter.
  *
- * @package     Nyx\Events\Emission
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
  * @copyright   2012-2017 Nyx Dev Team

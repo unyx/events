@@ -5,7 +5,6 @@
  *
  * Utility base class for concrete classes acting as events and containing event data.
  *
- * @package     Nyx\Events
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
  * @copyright   2012-2017 Nyx Dev Team

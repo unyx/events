@@ -6,13 +6,9 @@ use nyx\events\interfaces;
 /**
  * Event Emitter
  *
- * Event synchronization point. Registers/removes listeners for events and triggers events. Supports registering
- * listeners by priority and subscribers.
- *
  * Important note: When using this trait, make sure the class you are using it in also implements the Emitter
  * interface.
  *
- * @package     Nyx\Events
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
  * @copyright   2012-2017 Nyx Dev Team

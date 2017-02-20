@@ -1,6 +1,6 @@
 {
   "name":        "nyx/events",
-  "description": "Basic event handling. An event Emitter, Event and Subscriber classes.",
+  "description": "Basic event handling.",
   "keywords":    ["nyx", "events", "event-emitter", "event-dispatcher", "event-subscriber"],
   "license":     "MIT",
   "homepage":    "https://github.com/unyx/nyx",

@@ -3,7 +3,9 @@
 /**
  * Event Emitter Interface
  *
- * @package     Nyx\Events
+ * Event synchronization point. Registers/removes listeners for events and emits events. Supports registering
+ * listeners by priority and subscribers.
+ *
  * @version     0.1.0
  * @author      Michal Chojnacki <m.chojnacki@muyo.io>
  * @copyright   2012-2017 Nyx Dev Team
@@ -52,7 +54,7 @@ interface Emitter
      * removes the given listener from all events it's listening to when only $name is null, OR
      * removes all listeners registered in this Emitter if both $name and $listener are null,
      *
-     * @param   string      $event      The event to remove a listener from.
+     * @param   string      $event      The event to remove the listener from.
      * @param   callable    $listener   The listener to remove.
      * @return  $this
      */
